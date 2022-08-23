@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
         SystemUiOverlayStyle(statusBarColor: HexColor.fromHex("#373636")));
 
     final HomePageController landingPageController =
-        Get.put(HomePageController(), permanent: false);
+        Get.put(HomePageController());
     return SafeArea(
         child: Scaffold(
       backgroundColor: Colors.black,

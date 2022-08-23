@@ -5,6 +5,7 @@ import 'package:mvc_movie_app/services/remote_service.dart';
 
 class MoviesController extends GetxController {
   var isLoading = true.obs;
+  var moviesListFinal = <Movie>[].obs;
   var moviesList = <Movie>[].obs;
   var moviesListFav = <Movie>[].obs;
   List<Categories> categoriesList = [
@@ -41,6 +42,7 @@ class MoviesController extends GetxController {
       var movies = await RemoteServices.fetchMovies();
       if (movies != null) {
         moviesList.value = movies;
+        moviesListFinal.value = movies;
       }
     } finally {
       isLoading(false);
@@ -54,5 +56,17 @@ class MoviesController extends GetxController {
       moviesListFav.add(movie);
     }
     movie.isFavorite.toggle();
+  }
+
+  void runFilter(String enteredKeyword) {
+    if (enteredKeyword.isEmpty) {
+      moviesList.value = moviesListFinal.value;
+    } else {
+      moviesList.value = moviesListFinal
+          .where((movie) => movie.originalTitle
+              .toLowerCase()
+              .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
   }
 }

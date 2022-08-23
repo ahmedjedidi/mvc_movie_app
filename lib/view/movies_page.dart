@@ -16,6 +16,7 @@ class MoviesPage extends StatefulWidget {
 
 class MoviesPageState extends State<MoviesPage> {
   final MoviesController moviesController = Get.put(MoviesController());
+  TextEditingController editingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +37,22 @@ class MoviesPageState extends State<MoviesPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextField(
+                      onChanged: (value) {
+                        moviesController.runFilter(value);
+                      },
+                      controller: editingController,
+                      decoration: const InputDecoration(
+                          labelText: "Search",
+                          hintText: "Search",
+                          prefixIcon: Icon(Icons.search),
+                          border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(25.0)))),
+                    ),
+                  ),
                   const SizedBox(height: 20),
                   SizedBox(
                       height: 100,

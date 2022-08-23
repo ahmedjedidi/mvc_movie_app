@@ -39,6 +39,7 @@ dependencies:
   cached_network_image:
   flutter_svg: ^1.1.0
   google_fonts:
+  flutter_mapbox_autocomplete: any
 
 dev_dependencies:
   flutter_test:
