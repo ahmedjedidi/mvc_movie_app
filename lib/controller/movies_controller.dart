@@ -39,7 +39,7 @@ class MoviesController extends GetxController {
   fetchMovies() async {
     try {
       isLoading(true);
-      var movies = await RemoteServices.fetchMovies();
+      var movies = await RemoteServicesImplt().fetchMovies();
       if (movies != null) {
         moviesList.value = movies;
         moviesListFinal.value = movies;
